@@ -1,4 +1,4 @@
-//this is to demonstrate proper custom equals() and hashCode()
+//this is to demonstrate proper custom equals(), hashCode() and toString();
 
 public final class PhoneNumber {
 	
@@ -43,5 +43,19 @@ public final class PhoneNumber {
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * Zwraca ci¹g reprezentuj¹cy ten numer telefonu
+	 * Ci¹g sk³ada siê z 12 znaków w formacie
+	 * xxx-yyy-zzzz, gdzie xxx jest numerem kierunkowym, yyy-prefiksem a zzzz-numerem linii
+	 * 
+	 * Je¿eli dowolna z trzech czêœci jest zbyt ma³a aby wype³niæ swoje pole
+	 * to jest ono uzupe³niane zerami z lewej strony
+	 * np. jeœli numerem linie jest 123 to ci¹g bêdzie mia³ postaæ 0123
+	 */
+	@Override
+	public String toString() {
+		return String.format("%03d-%03d-%04d", areaCode, prefix, lineNum);
 	}
 }
