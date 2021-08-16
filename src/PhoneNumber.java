@@ -1,5 +1,9 @@
-//this is to demonstrate proper equals()
+//this is to demonstrate proper custom equals() and hashCode()
+
 public final class PhoneNumber {
+	
+	private int hashCode;
+	
 	public PhoneNumber(short areaCode, short prefix, short lineNum) {
 		
 		this.areaCode = rangeCheck(areaCode, 999, "numer kierunkowy");
@@ -26,5 +30,18 @@ public final class PhoneNumber {
 		
 		PhoneNumber other = (PhoneNumber) obj;
 		return areaCode == other.areaCode && lineNum == other.lineNum && prefix == other.prefix;
+	}
+	
+	@Override
+	public int hashCode() {
+		int result = hashCode;
+		if (result == 0) {
+			result = Short.hashCode(areaCode);
+			result = 31 * result + Short.hashCode(prefix);
+			result = 31 * result + Short.hashCode(lineNum);
+			hashCode = result;
+		}
+		
+		return result;
 	}
 }
